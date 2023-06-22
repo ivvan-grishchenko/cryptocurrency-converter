@@ -1,1 +1,1 @@
-# cryptocurrency-converter
+# Just a simple cryptocurrency converter
