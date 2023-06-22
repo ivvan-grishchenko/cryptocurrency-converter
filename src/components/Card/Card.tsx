@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { IconArrowsExchange } from '@tabler/icons-react';
 import React, { useState } from 'react';
@@ -27,6 +28,9 @@ const useStyles = createStyles(theme => ({
 
 export const Card: React.FC<CardProps> = ({ currencies }) => {
   const { classes } = useStyles();
+  const matchesDesktop = useMediaQuery('(min-width: 768px)', true, {
+    getInitialValueInEffect: false,
+  });
 
   const [loading, setLoading] = useState<boolean>(false);
   const [amount, setAmount] = useState<number | ''>('');
@@ -84,8 +88,8 @@ export const Card: React.FC<CardProps> = ({ currencies }) => {
       radius="md"
       p="md"
       withBorder
-      w={600}
-      h={300}
+      w={matchesDesktop ? 600 : 300}
+      h={matchesDesktop ? 300 : 500}
       className={classes.card}
     >
       <Stack spacing="xl" align="stretch" justify="center" h="100%" w="100%">
@@ -105,7 +109,7 @@ export const Card: React.FC<CardProps> = ({ currencies }) => {
           from={from}
           to={to}
         />
-        <Group position="center" spacing="xl">
+        <Group position="center" spacing={matchesDesktop ? 'xl' : 'xs'}>
           <Dropdown
             value={from}
             setValue={setFrom}
@@ -117,7 +121,7 @@ export const Card: React.FC<CardProps> = ({ currencies }) => {
             color="blue"
             size="lg"
             variant="filled"
-            mt="auto"
+            mt={matchesDesktop ? 'auto' : ''}
             onClick={changeValues}
           >
             <IconArrowsExchange size="1.625rem" />
