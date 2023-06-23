@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ReactElement } from 'react';
 
+import { ltrCache } from '../../ltr-cache';
 import { Header } from '../components/Header/Header';
 
 export default function App(props: AppProps): ReactElement {
@@ -24,7 +25,9 @@ export default function App(props: AppProps): ReactElement {
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
+          dir: 'ltr',
         }}
+        emotionCache={ltrCache}
       >
         <Notifications />
         <Header>
